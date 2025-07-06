@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up - Crypto and Stock Viewer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/signupstyle.css') }}" />
+</head>
+<body>
+  <img class='img1' src="{{ url_for('static', filename='images/bg5.jpg') }}" alt="Background Image">
+  
+  <div class="center-box">
+    <h3>Sign Up</h3>
+
+    <!-- Flash message display -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Real form -->
+    <form method="POST" action="{{ url_for('signup') }}">
+      <input type="text" name="username" placeholder="Username" class="text" required />
+      <input type="email" name="email" placeholder="Email" class="text" required />
+      <input type="password" name="password" placeholder="Password" class="pass" required />
+      <input type="password" name="confirm_password" placeholder="Confirm Password" class="pass" required />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="p2">Already have an account? <a class="signup" href="{{ url_for('login') }}">Login</a></p>
+  </div>
+</body>
+</html>

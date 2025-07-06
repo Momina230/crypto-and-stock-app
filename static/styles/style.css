@@ -1,0 +1,361 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.img1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 130vh;
+    object-fit: cover;
+    z-index: -1;
+    /* opacity: 0.79; */
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    height: 70px;
+    width: 100%;
+    top: 0;
+    right: 0;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* background: rgb(64, 135, 156); */
+    /* opacity: 0.9; */
+    color: white;
+    z-index: 10;
+}
+
+h1
+{
+    text-align: center;
+    margin-right: 360px;
+    margin-top: 100px;
+    color: white;
+    font-family: "Merienda", serif;
+    font-size: 40px;
+    text-shadow: black 1px 1px 2px, white -1px -1px 4px;
+}
+
+/* .navbar .right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+    cursor: pointer;
+} */
+
+.login {
+    background-color: black;
+    /* margin-left: 650px; */
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 12px;
+    position: absolute;
+    /* top: 70%;
+    left: 47%; */
+    margin-right: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    border :none;
+    opacity: 1;
+    /* font-size: 15px; */
+
+    color: white;
+    text-decoration: none;
+    /* margin-left: 25px; */
+    font-weight: lighter;
+    cursor: pointer;
+    /* margin-right: 35px; */
+    font-size: 16px;
+    top: 63%;
+    left: 81%;
+}
+
+.login:hover
+{
+    background-color: rgb(125, 181, 202);
+    color: black;   
+}
+
+.login:active
+{
+    background-color: rgb(67, 112, 129);
+    color: white;
+}
+
+.signup {
+    background-color: black;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 12px;
+    position: absolute;
+    margin-right: 100px;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    opacity: 1;
+    color: white;
+    text-decoration: none;
+    font-weight: lighter;
+    font-size: 16px;
+    top: 63%;
+    left: 90%;
+    white-space: nowrap;
+}
+
+.signup:hover
+{
+    background-color: rgb(125, 181, 202);
+    color: black;   
+}
+
+.signup:active
+{
+    background-color: rgb(67, 112, 129);
+    color: white;
+}
+
+/* Main Sections with Images */
+.main-sections {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 40px;
+    z-index: 5;
+}
+
+.section-card {
+    position: relative;
+    width: 350px;
+    margin-top: 685px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 70px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    background-color: rgb(32, 42, 57);
+    opacity: 0.9;
+}
+
+.section-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.section-card img {
+    width: 26%;
+    height: 26%;
+    object-fit: cover;
+    margin-left: 135px;
+    margin-top: 50px;
+    opacity: 5;
+}
+
+.section-card .overlay {
+    position: absolute;
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); */
+    width: 100%;
+    /* padding: 15px; */
+    /* padding-left: 10px; */
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    top: 120px;
+}
+
+.section-card2 {
+    position: relative;
+    width: 350px;
+    margin-top: 685px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 60px;
+    margin-right: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    background-color: rgb(32, 42, 57);
+    opacity: 0.9;
+}
+
+.section-card2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.section-card2 img {
+    width: 26%;
+    height: 26%;
+    object-fit: cover;
+    margin-left: 135px;
+    margin-top: 50px;
+    opacity: 5;
+}
+
+
+.section-card2 .overlay {
+    position: absolute;
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); */
+    width: 100%;
+    /* padding: 15px; */
+    /* padding-left: 10px; */
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    top: 120px;
+}
+
+/* Forms and Views */
+.center-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    z-index: 20;
+}
+
+.center-box input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.center-box button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h2
+{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 0px;
+    padding-left: 2px;
+    left: 0;
+    margin-bottom: 5px;
+}
+
+.overlay
+{
+    padding-right: 10px;
+    /* background-color: rgb(24, 45, 63); */
+}
+
+.p1
+{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 50px;
+    line-height: 1.5;
+}
+
+.img2
+{
+    width: 20px;
+    height: 20px;
+}
+
+.p2
+{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    margin-top: 190px;
+    top: 200%;
+    padding-top: 40px;
+}
+
+.descp
+{
+    background-color: rgb(32, 42, 57);
+    opacity: 0.8;
+    width: 1000px;
+    margin-left: 210px;
+    border-radius: 100px;
+    height: 620px;
+    margin-top: 230px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.p3
+{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.p4
+{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+    line-height: 1.6;
+    margin-top: 0px;
+}
+
+.p5
+{
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 50px;
+    line-height: 1.6;
+    margin-top:0px;
+}

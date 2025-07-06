@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Crypto and Stock Viewer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/loginstyle.css') }}"/>
+</head>
+<body>
+  <img class="img1" src="{{ url_for('static', filename='images/bg5.jpg') }}" alt="Background Image">
+  <h1 class="page-title">CRYPTO AND</h1>
+  <h1 class="page-title1">STOCK MARKET</h1>
+
+  <div class="center-box">
+    <h3>Login to your Account</h3>
+
+    <!-- Flash message display (will now be handled by JavaScript) -->
+    <div id="flash-messages-container"></div>
+
+    <!-- Modified form with JavaScript handling -->
+    <form id="loginForm" method="POST">
+      <input type="email" name="email" id="email" placeholder="Email" class="text" required />
+      <input type="password" name="password" id="password" placeholder="Password" class="pass" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <p class="p1">Forgot Password?</p>
+    <p class="p2">Don't have an account? <a class="signup" href="{{ url_for('signup') }}">Sign up</a></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const flashContainer = document.getElementById('flash-messages-container');
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          // Store email in localStorage for frontend use
+          localStorage.setItem("userEmail", result.email);
+          // Redirect to home page
+          window.location.href = "/home";
+        } else {
+          // Display error message
+          flashContainer.innerHTML = `<div class="error">${result.message}</div>`;
+        }
+      } catch (error) {
+        flashContainer.innerHTML = `<div class="error">Network error. Please try again.</div>`;
+        console.error('Login error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

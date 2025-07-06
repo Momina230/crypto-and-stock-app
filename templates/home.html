@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto and Stock Viewer</title>
+  <style></style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&display=swap" rel="stylesheet" /> -->
+  <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet" />
+</head>
+<body onload="initPage()">
+  <img class="img1" src="{{ url_for('static', filename='images/bg5.jpg') }}" alt="Background Image">
+
+  <div class="navbar">
+    <h1>CRYPTO AND STOCK MARKET</h1>
+    <div class="right" id="nav-buttons" style="display: none;">
+      <a class="login" href="{{ url_for('login') }}">Login</a>
+      <a class="signup" href="{{ url_for('signup') }}">Sign Up</a>
+    </div>
+  </div>
+
+  <section class="descp">
+        <p class="p2"> Welcome to Crypto and Stocks Market - Your Gateway to Crypto & Stock Market 
+                       Insights </p>
+        <p class="p3"> Stay ahead of the curve with real-time data, expert analysis, and powerful tools 
+                       tailored for both cryptocurrency and stock market investors. Whether you're a 
+                       seasoned trader or just getting started, our platform brings you the latest market
+                       trends, price charts, portfolio tracking, and breaking financial news, all in one
+                       place. </p>
+        <p class="p4"> Explore a wide range of digital assets and equities, compare historical performance,
+                       monitor volatility, and make informed decisions with confidence. Our intuitive 
+                       interface makes it easy to analyze market movements, follow your favorite assets,
+                       and stay updated on global financial developments. </p>
+        <p class="p5"> From Bitcoin to the S&P 500 - we bridge traditional finance and the future of 
+                       decentralized markets. </p>
+    </section>
+
+  <div class="main-sections" style="display: none;">
+    <div class="section-card"> <a href="{{ url_for('view') }}" target="_blank">
+      <img src="{{ url_for('static', filename='images/stocks1.jpg') }}" alt="Background Image">
+      <div class="overlay">
+        <h2>View Stock Market</h2>
+        <p class="p1">Track real-time stock prices and trends to stay updated with the market.</p>
+      </div>
+    </div>
+    <div class="section-card2"> <a href="{{ url_for('invest') }}" target="_blank">
+      <img src="{{ url_for('static', filename='images/invest1.jpg') }}" alt="Background Image">
+      <div class="overlay">
+        <h2>Invest in Stock Market</h2>
+        <p class="p1">Start investing with insights and tools to grow your wealth confidently.</p>
+      </div>
+    </div> </a>
+  </div>
+
+  <div class="center-box" id="view-stock" style="display: none;">
+    <h3>Stock Market Overview</h3>
+    <p>Live market data, trends, and insights.</p>
+  </div>
+
+  <div class="center-box" id="invest-stock" style="display: none;">
+    <h3>Invest in Stock Market</h3>
+    <p>Resources and tools to start investing today.</p>
+  </div>
+
+  <script>
+  function initPage() {
+    const isLoggedIn = "{{ email }}" !== "";
+    if (isLoggedIn) {
+      document.querySelector(".main-sections").style.display = "flex";
+      document.getElementById("nav-buttons").style.display = "flex";
+      document.querySelector(".descp").style.display = "block";
+    } else {
+      window.location.href = "{{ url_for('login') }}";
+    }
+  }
+</script>
+
+
+
+  <!-- <script>
+    function initPage() {
+      const isLoggedIn = sessionStorage.getItem("loggedIn");
+      if (isLoggedIn) {
+        document.querySelector(".main-sections").style.display = "flex";
+        document.getElementById("nav-buttons").style.display = "flex";
+        document.querySelector(".descp").style.display = "block";
+      } else {
+        window.location.href = "{{ url_for('login') }}";
+      }
+    }
+
+    function showSection(id) {
+      document.querySelectorAll(".center-box").forEach(el => el.style.display = "none");
+      document.getElementById(id).style.display = "flex";
+    }
+  </script> -->
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/investstyle.css') }}"/>
+  <title>Invest in Crypto - Price Predictor</title>
+  <style>
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f0f8ff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .output p {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <img class="img1" src="{{ url_for('static', filename='images/bg5.jpg') }}" alt="Background Image">
+
+  <div class="main-content">
+    <h1>CRYPTO AND STOCK MARKET</h1>
+
+    <div class="container">
+      <h2>Investments</h2>
+
+      <div class="form-group">
+        <label class="ticker" for="ticker">Enter Ticker (e.g., BTCUSDT, ETHBUSD)</label>
+        <input type="text" id="ticker" placeholder="e.g., BTCUSDT or ETHBUSD">
+      </div>
+
+      <div class="form-group">
+        <label for="currency">Select Currency</label>
+        <select id="currency">
+          <option value="USDT">USDT</option>
+          <option value="BUSD">BUSD</option>
+          <option value="USDC">USDC</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Investment Amount</label>
+        <input type="number" id="amount" placeholder="e.g., 1000">
+      </div>
+
+      <div class="form-group">
+        <button id="invest-btn" onclick="submitInvestment()">Invest</button>
+        <button onclick="addToWatchlist()">Add to Watchlist</button>
+        <!-- <button class="view_list" onclick="viewWatchlist()">View Watchlist</button> -->
+      </div>
+
+      <div id="prediction-output" class="output" style="display: none;">
+        <p><strong>Ticker:</strong> <span id="out-ticker"></span></p>
+        <p><strong>Currency:</strong> <span id="out-currency"></span></p>
+        <p><strong>Live Price:</strong> $<span id="out-price"></span></p>
+        <p><strong>Predicted Price:</strong> $<span id="out-predicted"></span></p>
+        <p><strong>Estimated Return:</strong> <span id="out-return"></span></p>
+      </div>
+
+      <!-- <div id="watchlist-output" class="output" style="display: none;">
+ 
+        <h2>Your Watchlist</h2>
+        <div id="watchlist-content"></div>
+      </div> -->
+    </div>
+
+    <div class="watchlist-btn-container">
+      <button class="view_list" onclick="viewWatchlist()">View Watchlist</button>
+    </div>
+
+    <div id="watchlist-output" class="output" style="display: none;">
+ 
+        <h2 class="list">Your Watchlist</h2>
+        <div class="watchcontent" id="watchlist-content"></div>
+      </div>
+    </div>
+  <!-- </div> -->
+
+  <script>
+  async function addToWatchlist() {
+  const ticker = document.getElementById('ticker').value.trim().toUpperCase();
+  const email = localStorage.getItem("userEmail");
+
+  if (!ticker) {
+    alert("Please enter a valid ticker symbol");
+    return;
+  }
+
+  if (!email) {
+    alert("Please log in first");
+    window.location.href = "/";
+    return;
+  }
+
+  try {
+    const response = await fetch('/watchlist/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        ticker: ticker,
+        email: email  // Explicitly include email
+      })
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      alert(`Successfully added ${ticker} to watchlist!`);
+    } else {
+      alert(`Error: ${result.message}`);
+    }
+  } catch (error) {
+    alert("Network error. Please try again.");
+    console.error("Watchlist error:", error);
+  }
+}
+
+    async function submitInvestment() {
+      const investBtn = document.getElementById("invest-btn");
+      investBtn.disabled = true;
+
+      const ticker = document.getElementById('ticker').value.trim().toUpperCase();
+      const amount = parseFloat(document.getElementById('amount').value);
+      const currency = document.getElementById('currency').value.toUpperCase();
+      const email = localStorage.getItem("userEmail");
+
+      if (!ticker || isNaN(amount)) {
+        alert("Please enter a valid ticker and amount.");
+        investBtn.disabled = false;
+        return;
+      }
+
+      if (!email) {
+        alert("User email not found. Please log in.");
+        investBtn.disabled = false;
+        return;
+      }
+
+      const response = await fetch('/invest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticker, amount, currency, email })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert(`Investment successful: ${ticker} with ${amount} ${currency}`);
+        document.getElementById('ticker').value = '';
+        document.getElementById('amount').value = '';
+      } else {
+        alert(`Failed: ${result.message}`);
+      }
+
+      investBtn.disabled = false;
+    }
+
+async function viewWatchlist() {
+    const email = localStorage.getItem("userEmail");
+    if (!email) {
+        alert("Please log in first");
+        window.location.href = "/";
+        return;
+    }
+
+    try {
+        const response = await fetch(`/watchlist?email=${encodeURIComponent(email)}`);
+        const data = await response.json();
+
+        const watchlistOutput = document.getElementById("watchlist-output");
+        const watchlistContent = document.getElementById("watchlist-content");
+        watchlistContent.innerHTML = "";  // Clear previous content
+
+        if (data.success && data.watchlist && data.watchlist.length > 0) {
+            data.watchlist.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "watchlist-item";
+                div.innerHTML = `
+                    <p><strong>${item.ticker}</strong> (${item.currency})</p>
+                    <p>Price: $${item.latest_price?.toFixed(2) || 'N/A'}</p>
+                `;
+                watchlistContent.appendChild(div);
+            });
+        } else {
+            watchlistContent.innerHTML = "<p>Your watchlist is empty</p>";
+        }
+        watchlistOutput.style.display = "block";
+    } catch (error) {
+        console.error("Error fetching watchlist:", error);
+        alert("Failed to load watchlist. Please try again.");
+    }
+}
+  </script>
+</body>
+</html>

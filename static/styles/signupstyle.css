@@ -1,0 +1,129 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url('../images/bg6.jpg') no-repeat center center fixed; */
+    background-size: cover;
+}
+
+/* Background Image */
+.img1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 130vh;
+    object-fit: cover;
+    z-index: -1;
+    /* opacity: 0.79; */
+}
+
+/* Center Box Container */
+.center-box {
+    /* background-color: rgb(125, 181, 202); */
+    padding: 30px;
+    opacity: 0.95;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 265px;
+    height: 386px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Heading Style */
+.center-box h3 {
+    margin: 0;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: white;
+}
+
+/* .center-box input
+{
+    ba
+} */
+/* Username/Email Inputs */
+.text {
+    padding: 10px;
+    width: 92%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(223, 219, 219);
+}
+
+/* Password Inputs */
+.pass {
+    padding: 10px;
+    width: 92%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(223, 219, 219);
+}
+
+/* Button Style */
+.center-box button {
+    padding: 10px;
+    background-color: #0474ec;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.center-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Forgot Password (login page only) */
+.p1 {
+    /* background-color: rgb(125, 181, 202); */
+    color: #007bff;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.p1:hover {
+    text-decoration: underline;
+}
+
+.p1:active {
+    color: black;
+}
+
+/* Sign Up / Login Redirect Text */
+.p2 {
+    /* background-color: rgb(125, 181, 202); */
+    color: #007bff;
+    font-size: 15px;
+    text-align: center;
+    cursor: default;
+    margin-top: 12px;
+}
+
+.signup {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signup:hover {
+    text-decoration: underline;
+}
+
+.signup:active {
+    color: black;
+}

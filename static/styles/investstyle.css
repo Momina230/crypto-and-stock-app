@@ -1,0 +1,218 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f4f8;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.img1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 130vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-family: "Merienda", serif;
+  font-size: 40px;
+  text-shadow: black 1px 1px 2px, white -1px -1px 4px;
+  margin-bottom: 1.5rem;
+  margin-left: 210px;
+}
+
+/* .container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  max-width: 350px;
+  margin-top: 15px;
+  height: 420px;
+} */
+
+h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: white;
+  padding-top: 30px;
+  margin-right: 240px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: white;
+  margin-top: 11px;
+  margin-right: 640px;
+  margin-left: 260px;
+
+}
+
+input{
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 35%;
+  /* margin-left: 160px; */
+  margin-right: 130px;
+  margin-left: 260px;
+  background-color: rgb(223, 219, 219);
+}
+
+select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 36.68%;
+  background-color: rgb(223, 219, 219);
+  margin-right: 130px;
+  margin-left: 260px
+}
+
+button {
+  background-color: rgb(67, 112, 129);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 36.68%;
+  margin-top: 20px;
+  margin-right: 130px;
+  margin-left: 260px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: black;
+}
+
+button:active
+{
+  background-color: rgb(84, 146, 168);
+}
+
+.view_list {
+  background-color: rgb(67, 112, 129);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 108.3%;
+  /* margin-top: 30px; */
+  margin-bottom: 0px;
+  /* align-self: flex-end; */
+  margin-right: 10%;
+  transition: background-color 0.2s ease; 
+}
+
+
+.view_list:hover {
+  background-color: black;
+}
+
+.view_list:active
+{
+  background-color: rgb(84, 146, 168);
+}
+
+.watchlist-btn-container {
+  position: absolute;
+  top: 247.8px; /* Adjust this value to align with input fields */
+  /* right: 810px;  */
+  z-index: 10;
+  /* width: 66.95%; */
+  /* left: 500px; */
+  margin-left: 350px;
+}
+
+#watchlist-output {
+  width: 33.46%;
+  margin-left: 903px;
+  position: absolute;
+  top: 320px;
+  height: 40.8%;
+  background-color: rgb(32, 42, 57);
+  background: none;
+  opacity: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 2.0);
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+  border: none;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* .output
+{
+  background-color: rgb(223, 219, 219);
+} */
+
+.list{
+  color: white;
+  margin-left: 150px;
+  position: absolute;
+  top: 0;
+}
+
+.watchcontent
+{
+  color: white;
+  top: 60%;
+  margin-left: 150px;
+  position: absolute;
+}
+
+@keyframes fadeIn 
+{
+    from 
+    {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to 
+    {
+        opacity: 1;
+        transform: translateY(3);
+    }
+}
+
+@keyframes fadeIN 
+{
+    from 
+    {
+        opacity: 0;
+        /* transform: translateY(-30px); */
+    }
+
+    to 
+    {
+        opacity: 0.65;
+        /* transform: translateY(3); */
+    }
+}
